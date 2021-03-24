@@ -1,0 +1,461 @@
+<html>
+   <head>
+      <title> YOUR NAME - Assignment</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      <style>
+         body {
+         font-family: sans-serif;
+         }
+      </style>
+   </head>
+   <body>
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+               <td style="vertical-align: top;">Archie Gonzales</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+               <td style="vertical-align: top;">13202719</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+               <td style="vertical-align: top;"><p><a href="https://www.kaggle.com/andytran11996/cost-of-living" target="_blank" rel="noopener">Cost of Living Dataset (2018)</a>.</p>
+
+<p>The dataset was collected and developed by Numbeo a crowd-sourced global database of quality of life informations. This particular data is of the 2018 cost of living dataset which look at the Cost of Living Index, Rent Index, Groceries Index, Restaurant Price Index, and Local Purchasing Power Index of different countries which is further broken down to their respective cities. Other than the Indices, information on prices for daily/common commodities such as 1-bedroom apartment rent, 1-L milk, 1-kg of appples, etc. are also presented for each city and country. These indices are relative to New York City (NYC). Which means that for New York City, each index should be 100(%). If another city has, for example, rent index of 120, it means that on an average in that city rents are 20% more expensive than in New York City. If a city has rent index of 70, that means on average rent in that city is 30% less expensive than in New York City.</p>
+               </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+               <td style="vertical-align: top;"><p>This second scatter plot is an alternative to the coloured scatter plot. I created it so that I can query a particular City/Country in the plot. My initial questions would be:</p> 
+
+<p>Where does Ireland fit in within the clusters in the plot?</p>
+<p>How can I explore other Cities/Countries within this scatter plot?</p>
+<p>What other information can I derive from this plot that pertains to other indices in the dataset?</p></td>
+            </tr>
+         </tbody>
+      </table>
+      <hr />
+      <div id="vis"></div>
+      <hr />
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+               <td style="vertical-align: top;"><p>GRAPH-2b: SCATTER PLOT WITH QUERY WIDGET</p>
+
+<p>The above scatter plot shows the relationship between 'cost of living index' and 'local purchasing power index'. Each point represent a 'City'. Hovering over the points, all information contained within the dataset for that particular City is shown. Additionally, there is a Query Widget, in the form of a Drop-Down List, that would allow users to search for a Country of interest.</p></td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Insight:</strong></td>
+               <td style="vertical-align: top;"><p>This scatter plot allows me to isolate and visualise one particular point (City) and see where it is located within the clusters. I can also get more information if I hover on the points, giving more insight as to the other Indices and 'cost of living' information available within the dataset for that City.</p>
+
+<p>For example, when I search for Ireland, I noticed that it is cheaper to live in Galway or Cork than in Dublin or Limerick. Moreover, it looks like people are earning more in Galway than their counterparts in Dublin. Then I realised, my assumption was initially wrong. The reason why Galway has a higher Local Purchase Power Index is that the cost of living is lower than in Dublin, and makes it affordable for people to buy common commodities. Recent studies even show that Galway is 24% cheaper than Dublin <a href="https://www.expatistan.com/cost-of-living/comparison/dublin/galway" target="_blank" rel="noopener">(Expatistan, 2021);</a> thus, your Euro will go a long way in Galway (well sort of....)!</p>
+
+<p>Looking at the bottom of the pack, right a way, a visible point which is Venezuela is noted. Another new thing I have learned is that Venezuela, which has the world's largest crude oil reserve, higher than Saudi Arabia, and yet has the lowest LPPI as seen on the plot when compared to Saudi Arabia (one of the highest LPPI). Why then is Venezuela not as developed as Saudi? I learned that Venezuela is an example of a decaying petrostate, where the government is highly dependent on income from fossil fuels, where power is concentrated in an elite minority, and corruption is widespread <a href="https://www.cfr.org/backgrounder/venezuela-crisis" target="_blank" rel="noopener">(Cheatham and Labrador, 2021)</a>.  Many factors have contributed to Venezuela’s current crisis including mismanagement of oil wealth by former president Hugo Chavez and the current leader, Nicolás Maduro, and criminality, lawlessness and the black market <a href="https://theconversation.com/venezuela-crisis-is-the-hidden-consequence-of-saudi-arabias-oil-price-war-82178" target="_blank" rel="noopener">(Gökay, 2017)</a>. On the other hand, saudi Arabia is home to most of the cheap oil in the world (world’s cheapest to extract than Venezuelan oil), it plays the role of price setter, with broad economic consequences. As the home to most of the easy to develop oil in the world, it can play the role of price stabilizer, thus it has more clout and political influence than Venezuela <a href="https://www.washingtonpost.com/blogs/ezra-klein/post/why-venezuela-wont-pass-saudi-arabia-as-the-worlds-biggest-oil-power-anytime-soon/2012/06/15/gJQAxJ2EfV_blog.html" target="_blank" rel="noopener">(Plumer, 2012)</a>.</p></td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+               <td style="vertical-align: top;"><p>As stated in my previous design consideration for Graph-2a (Coloured Scatter Plot), I used scatterplot as it is effective in showing relationships between quantitave variables. However, unlike the previous scatter plot, this one does not look too busy with shapes and colours. I decided to use a single grey colour for all the points. Since the purpose of this plot is for me to isolate and choose a certain country and visualise their position within the cluster, I wanted all points similar in appearance and only the selected country will pop-up on the scatter plot. I developed a Query Widget using Drop-Down List of all Countries in the dataset. Once selected that country points appear as red points which is slightly larger than the rest of the grey points. When hovering above the points, I wanted all the information to appear (noting that there is not a lot of data within the scatter plot, this will provide additional context for the Country chosen). 
+I created layers, one with the points being grey and then a second layer where point changes to red depending on the parameters chosen. Using the 'selection parameters', as specified in the Vege-Lite documentation, normally helps define data queries that are driven by direct manipulation of user input (e.g., mouse clicks or drags). A parameter becomes a selection when the select property is specified. For this particular parameter, the selct property specified was 'Country' and a pull-down list was created.</p>
+
+<p>After I managed to run a succesful trial run (after so many times!), I then incorporated it into my HTML template and eventually saved it as HTML. However, it did not work when I opened it as an HTML, i.e., the scatter plot was not visible; while it worked perfectly well in Vega-Lite Editor. As I was not an expert on HTML, I needed to do a bit of research on HTML coding and at the same time went back to the drawing board. I was stil unsuccesful in incorporating the Vega-Lite script into the HTML template. Everything was a trial and error. It took me awhile to understand the 'selection parameters' specification, and still barely understands it. Then I decided to compile my codes in Vega. Then copied the compiled Vega script into the HTML template. It worked! I think this is the most arduous Vega-Lite script for me (being a nurse with basic coding experience!). Generally, I suppose, it is not the most elegant, but I will keep it. A reminder of the number of hours, frustration, excitement, and the sense of accomplishment that went with the creation of this scatter plot.</p>
+
+<p>The original Vega-Lite Code for this Scatter Plot prior to compiling with Vega can be found <a href="https://vega.github.io/editor/#/gist/1b83817f43a860f71fdfd7edd934734a/Graph-2b-First-Completed-Draft.json" target="_blank" rel="noopener">here</a>.</p></td>
+            </tr>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+               <td style="vertical-align: top;"><p>There was no filtering done within the Vega-Lite environment. However, transformation done was merely for visualisation aspect, based on the layering created, as specified by a parameter ('Country'). By design, I decided to visualise the aggregate data on countries and not cities. I also chose cost of living and LPP indeces for the quantitative data to be compared. However, I have to manipulate the dataset and convert all values within "Country" that are coded as abbreviated states (e.g., NY for New York or CA for California, etc.) to USA. This was manually done using Excel sorting/filtering methods. Also, I needed to change some the Column Headers of the dataset to make them more meaningful and compatible for use within the Vega-Lite environment (i.e., "Apartment(1.bedroom).in.City.Centre" was changed to "Apartment_1-bedroom_in_City_Centre"). The new version of the dataset is saved and can be accessed via: <a href="https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv" target="_blank" rel="noopener">my new Cost of Living Dataset (2018) saved in GitHub</a>.</p>
+</td>
+            </tr>
+         </tbody>
+      </table>
+
+
+      <script type="text/javascript">
+        var yourVlSpec =  {
+
+
+
+  
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "description": "ARCHIE GONZALES INFOVIZ ASSIGNMENT Graph-2b",
+  "background": "aliceblue",
+  "padding": 5,
+  "width": 650,
+  "height": 500,
+  "title": {
+    "text": "COST OF LIVING INDEX vs LOCAL PURCHASING POWER",
+    "anchor": null,
+    "fontSize": 18,
+    "offset": 20,
+    "color": "brown"
+  },
+  "style": "cell",
+  "data": [
+    {
+      "name": "Selection1_store",
+      "values": [
+        {
+          "unit": "layer_0",
+          "fields": [{"type": "E", "field": "Country"}],
+          "values": ["null"]
+        }
+      ]
+    },
+    {
+      "name": "source_0",
+      "url": "https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv",
+      "format": {"type": "csv", "delimiter": ","}
+    },
+    {
+      "name": "data_0",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Cost_of_Living_Index\"]) && isFinite(+datum[\"Cost_of_Living_Index\"]) && isValid(datum[\"Local_Purchasing_Power_Index\"]) && isFinite(+datum[\"Local_Purchasing_Power_Index\"])"
+        }
+      ]
+    },
+    {
+      "name": "data_1",
+      "source": "source_0",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "!length(data(\"Selection1_store\")) || vlSelectionTest(\"Selection1_store\", datum)"
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum[\"Cost_of_Living_Index\"]) && isFinite(+datum[\"Cost_of_Living_Index\"]) && isValid(datum[\"Local_Purchasing_Power_Index\"]) && isFinite(+datum[\"Local_Purchasing_Power_Index\"])"
+        }
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "unit",
+      "value": {},
+      "on": [
+        {"events": "mousemove", "update": "isTuple(group()) ? group() : unit"}
+      ]
+    },
+    {
+      "name": "Selection1_Country",
+      "init": "\"null\"",
+      "bind": {
+        "input": "select",
+        "options": [
+          "--select a country--",
+          "Albania",
+          "Algeria",
+          "Angola",
+          "Argentina",
+          "Armenia",
+          "Australia",
+          "Austria",
+          "Azerbaijan",
+          "Bahamas",
+          "Bahrain",
+          "Bangladesh",
+          "Belarus",
+          "Belgium",
+          "Bermuda",
+          "Bosnia And Herzegovina",
+          "Botswana",
+          "Brazil",
+          "Brunei",
+          "Bulgaria",
+          "Cambodia",
+          "Canada",
+          "Chile",
+          "China",
+          "Colombia",
+          "Costa Rica",
+          "Croatia",
+          "Cyprus",
+          "Czech Republic",
+          "Denmark",
+          "Dominican Republic",
+          "Ecuador",
+          "Egypt",
+          "El Salvador",
+          "Estonia",
+          "Ethiopia",
+          "Finland",
+          "France",
+          "Georgia",
+          "Germany",
+          "Ghana",
+          "Greece",
+          "Guatemala",
+          "Hong Kong",
+          "Hungary",
+          "Iceland",
+          "India",
+          "Indonesia",
+          "Iran",
+          "Iraq",
+          "Ireland",
+          "Israel",
+          "Italy",
+          "Jamaica",
+          "Japan",
+          "Jordan",
+          "Kazakhstan",
+          "Kenya",
+          "Kuwait",
+          "Kyrgyzstan",
+          "Latvia",
+          "Lebanon",
+          "Libya",
+          "Lithuania",
+          "Luxembourg",
+          "Macedonia",
+          "Malaysia",
+          "Maldives",
+          "Malta",
+          "Mexico",
+          "Moldova",
+          "Mongolia",
+          "Montenegro",
+          "Morocco",
+          "Mozambique",
+          "Namibia",
+          "Nepal",
+          "Netherlands",
+          "New Zealand",
+          "Nigeria",
+          "Norway",
+          "Oman",
+          "Pakistan",
+          "Panama",
+          "Paraguay",
+          "Peru",
+          "Philippines",
+          "Poland",
+          "Portugal",
+          "Puerto Rico",
+          "Qatar",
+          "Romania",
+          "Russia",
+          "Rwanda",
+          "Saudi Arabia",
+          "Selangor",
+          "Serbia",
+          "Singapore",
+          "Slovakia",
+          "Slovenia",
+          "South Africa",
+          "South Korea",
+          "Spain",
+          "Sri Lanka",
+          "Sweden",
+          "Switzerland",
+          "Syria",
+          "Taiwan",
+          "Tanzania",
+          "Thailand",
+          "Tunisia",
+          "Turkey",
+          "Uganda",
+          "Ukraine",
+          "United Arab Emirates",
+          "United Kingdom",
+          "Uruguay",
+          "USA",
+          "Uzbekistan",
+          "Venezuela",
+          "Vietnam",
+          "Zambia",
+          "Zimbabwe"
+        ]
+      }
+    },
+    {
+      "name": "Selection1",
+      "update": "vlSelectionResolve(\"Selection1_store\", \"union\", true, true)"
+    },
+    {
+      "name": "Selection1_tuple",
+      "update": "Selection1_Country !== null ? {fields: Selection1_tuple_fields, values: [Selection1_Country]} : null"
+    },
+    {
+      "name": "Selection1_tuple_fields",
+      "value": [{"type": "E", "field": "Country"}]
+    },
+    {
+      "name": "Selection1_modify",
+      "on": [
+        {
+          "events": {"signal": "Selection1_tuple"},
+          "update": "modify(\"Selection1_store\", Selection1_tuple, true)"
+        }
+      ]
+    }
+  ],
+  "marks": [
+    {
+      "name": "layer_0_marks",
+      "type": "symbol",
+      "style": ["point"],
+      "interactive": true,
+      "from": {"data": "data_0"},
+      "encode": {
+        "update": {
+          "opacity": {"value": 0.7},
+          "tooltip": {"signal": "datum"},
+          "fill": {"value": "transparent"},
+          "stroke": [
+            {
+              "test": "!length(data(\"Selection1_store\")) || vlSelectionTest(\"Selection1_store\", datum)",
+              "value": "#4c78a8"
+            },
+            {"value": "grey"}
+          ],
+          "ariaRoleDescription": {"value": "point"},
+          "description": {
+            "signal": "\"COST OF LIVING INDEX: \" + (format(datum[\"Cost_of_Living_Index\"], \"\")) + \"; LOCAL PURCHASING POWER: \" + (format(datum[\"Local_Purchasing_Power_Index\"], \"\"))"
+          },
+          "x": [
+            {
+              "test": "!isValid(datum[\"Cost_of_Living_Index\"]) || !isFinite(+datum[\"Cost_of_Living_Index\"])",
+              "value": 0
+            },
+            {"scale": "x", "field": "Cost_of_Living_Index"}
+          ],
+          "y": [
+            {
+              "test": "!isValid(datum[\"Local_Purchasing_Power_Index\"]) || !isFinite(+datum[\"Local_Purchasing_Power_Index\"])",
+              "field": {"group": "height"}
+            },
+            {"scale": "y", "field": "Local_Purchasing_Power_Index"}
+          ]
+        }
+      }
+    },
+    {
+      "name": "layer_1_marks",
+      "type": "symbol",
+      "style": ["circle"],
+      "interactive": false,
+      "from": {"data": "data_1"},
+      "encode": {
+        "update": {
+          "opacity": {"value": 0.7},
+          "fill": {"value": "red"},
+          "ariaRoleDescription": {"value": "circle"},
+          "description": {
+            "signal": "\"Cost_of_Living_Index: \" + (format(datum[\"Cost_of_Living_Index\"], \"\")) + \"; Local_Purchasing_Power_Index: \" + (format(datum[\"Local_Purchasing_Power_Index\"], \"\"))"
+          },
+          "x": [
+            {
+              "test": "!isValid(datum[\"Cost_of_Living_Index\"]) || !isFinite(+datum[\"Cost_of_Living_Index\"])",
+              "value": 0
+            },
+            {"scale": "x", "field": "Cost_of_Living_Index"}
+          ],
+          "y": [
+            {
+              "test": "!isValid(datum[\"Local_Purchasing_Power_Index\"]) || !isFinite(+datum[\"Local_Purchasing_Power_Index\"])",
+              "field": {"group": "height"}
+            },
+            {"scale": "y", "field": "Local_Purchasing_Power_Index"}
+          ],
+          "size": {"value": 100},
+          "shape": {"value": "circle"}
+        }
+      }
+    }
+  ],
+  "scales": [
+    {
+      "name": "x",
+      "type": "linear",
+      "domain": {
+        "fields": [
+          {"data": "data_0", "field": "Cost_of_Living_Index"},
+          {"data": "data_1", "field": "Cost_of_Living_Index"}
+        ]
+      },
+      "range": [0, {"signal": "width"}],
+      "zero": false,
+      "nice": true
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "fields": [
+          {"data": "data_0", "field": "Local_Purchasing_Power_Index"},
+          {"data": "data_1", "field": "Local_Purchasing_Power_Index"}
+        ]
+      },
+      "range": [{"signal": "height"}, 0],
+      "zero": false,
+      "nice": true
+    }
+  ],
+  "axes": [
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "gridScale": "y",
+      "grid": true,
+      "tickCount": {"signal": "ceil(width/40)"},
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "gridScale": "x",
+      "grid": true,
+      "tickCount": {"signal": "ceil(height/40)"},
+      "domain": false,
+      "labels": false,
+      "aria": false,
+      "maxExtent": 0,
+      "minExtent": 0,
+      "ticks": false,
+      "zindex": 0
+    },
+    {
+      "scale": "x",
+      "orient": "bottom",
+      "grid": false,
+      "title": "COST OF LIVING INDEX",
+      "titleFontSize": 12,
+      "labelFlush": true,
+      "labelOverlap": true,
+      "tickCount": {"signal": "ceil(width/40)"},
+      "zindex": 0
+    },
+    {
+      "scale": "y",
+      "orient": "left",
+      "grid": false,
+      "title": "LOCAL PURCHASING POWER",
+      "titleFontSize": 12,
+      "labelOverlap": true,
+      "tickCount": {"signal": "ceil(height/40)"},
+      "zindex": 0
+    }
+  ]
+}
+
+  
+
+	vegaEmbed("#vis", yourVlSpec);
+      </script>
+   </body>
+</html>

@@ -1,0 +1,141 @@
+<html>
+   <head>
+      <title> YOUR NAME - Assignment</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      <style>
+         body {
+         font-family: sans-serif;
+         }
+      </style>
+   </head>
+   <body>
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+               <td style="vertical-align: top;">Archie Gonzales</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+               <td style="vertical-align: top;">13202719</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+               <td style="vertical-align: top;"><p><a href="https://www.kaggle.com/andytran11996/cost-of-living" target="_blank" rel="noopener">Cost of Living Dataset (2018)</a>.</p>
+
+<p>The dataset was collected and developed by Numbeo a crowd-sourced global database of quality of life informations. This particular data is of the 2018 cost of living dataset which look at the Cost of Living Index, Rent Index, Groceries Index, Restaurant Price Index, and Local Purchasing Power Index of different countries which is further broken down to their respective cities. Other than the Indices, information on prices for daily/common commodities such as 1-bedroom apartment rent, 1-L milk, 1-kg of appples, etc. are also presented for each city and country. These indices are relative to New York City (NYC). Which means that for New York City, each index should be 100(%). If another city has, for example, rent index of 120, it means that on an average in that city rents are 20% more expensive than in New York City. If a city has rent index of 70, that means on average rent in that city is 30% less expensive than in New York City.</p>
+               </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+               <td style="vertical-align: top;"><p>My second questions is:</p>
+<p>What is the relationship between the Cost of Living Index and the Local Purchasing Power Index?</p> 
+<p>Are there any identifiable relationship or patterns among countries when these two variables are observed together?</p></td>
+            </tr>
+         </tbody>
+      </table>
+      <hr />
+      <div id="vis"></div>
+      <hr />
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+               <td style="vertical-align: top;"><p>GRAPH-2a: COLOURED SCATTER PLOT</p>
+
+<p>The above scatter plot shows the relationship between 'cost of living index' and 'local purchasing power index'. Each point represent a 'City'. These are represented by different shapes and colours determined by their 'Country'. The graph also showed 'Legend' listing the countries. Hovering over the points, information such as the 'City', 'Country', 'CoL Index' and 'LPP Index' details are shown.</p></td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Insight:</strong></td>
+               <td style="vertical-align: top;"><p>Immediately, the most obvious observation is that the points seem to cluster into two different groups. One group forms around 'Cost of Living Index' score of approximately above 60, while another group is clustered below it. The same clusters appear to group themselves based on 'Local Purchasing Power Index' of approimately of either above or below the score of 80. But which cities and countries are they? What could be the common features/characteristics of these cities/countries. Hovering over these clusters, it can be oberved that most of the cities/countries with high cost of living index and high purchasing power index mostly belong to some of the largest developed economies in the world such as USA, UK, Canada, France, Germany and Australia. After taking some time to read on this concept, I eventually ended up learning about the 'Balassa–Samuelson effect' or the tendency for consumer prices to be systematically higher in more developed countries than in less developed countries. The concept attempts to explain the 'Penn effect' which is that Purchasing Power Parity-deviations occurring in the same direction: "where incomes are high, average price levels are typically high" <a href="https://www.bis.org/publ/work270.pdf" target="_blank" rel="noopener">(Mihaljek and Klau, 2008).</a> Thus, a Big Mac in China is cheaper because local labor and restaurant rental costs are cheaper <a href="https://www.thebalance.com/purchasing-power-parity-3305953" target="_blank" rel="noopener">(Amadeo, 2020).</a> <a href="https://www.numbeo.com/cost-of-living/cpi_explained.jsp" target="_blank" rel="noopener">Numbeo,</a> (which calculated the indices for this dataset) defines Local Purchasing Power as the "relative purchasing power in buying goods and services in a given city for the average net salary in that city. If domestic purchasing power is 40, this means that the inhabitants of that city with an average salary can afford to buy on an average 60% less goods and services than New York City residents with an average salary". Thus, the relationship of how much people earns affect the cost of living of a country. However, there are outliers in the dataset. Al-Khobar, Saudi Arabia falls within the low cost-of-living countries but at the same time has the highest purchasing power index. Meaning, it's cheaper to live there and you may earn more than twice than when you work in NYC.</p>  </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+               <td style="vertical-align: top;"><p>Scatter plots’ primary uses are to observe and show relationships between two numeric variables. The dots in a scatter plot not only report the values of individual data points, but also patterns when the data are taken as a whole. For this particular plot, I decided to use colours and shapes to differentiate countries. It took me awhile to learn to include all the countries in the legend by creating four columns. While I did not like the output, as it was unnecessary and too much for 122 countries, I still coded it and left it there merely as an exercise in Vega-Lite. I added a tooltip, but instead of using the entire data or the encoding output, I chose specific details and added 'City' as one of the four fields to be shown.</p> 
+
+<p>While it was effective in showing correlations and patterns, it suffers from overplotting. There were too much noise, including different shapes and colours. I also find it hard to search or look for the city/country that I would like to investigate. Thus, I decided to explore ways to improve this scatterplot and to make it easier for me to search for a particular country. I developed a second scatter plot which is shown in Graph-2b.</p></td>
+            </tr>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+               <td style="vertical-align: top;"><p>There was no filtering/transformation done within the Vega-Lite environment. By design, I decided to visualise the aggrgate data on countries and not cities. I also chose cost of living and LPP indeces for the quantitative data to be compared. However, I have to manipulate the dataset and convert all values within "Country" that are coded as abbreviated states (e.g., NY for New York or CA for California, etc.) to USA. This was manually done using Excel sorting/filtering methods. Also, I needed to change some the Column Headers of the dataset to make them more meaningful and compatible for use within the Vega-Lite environment (i.e., "Apartment(1.bedroom).in.City.Centre" was changed to "Apartment_1-bedroom_in_City_Centre"). The new version of the dataset is saved and can be accessed via: <a href="https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv" target="_blank" rel="noopener">my new Cost of Living Dataset (2018) saved in GitHub</a>.</p>
+</td>
+            </tr>
+         </tbody>
+      </table>
+
+      <script type="text/javascript">
+        var yourVlSpec =  {
+
+
+"$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "ARCHIE GONZALES (13202719: Info Viz Assignment Graph-2a",
+  "background": "ivory",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv",
+    "format": {"type": "csv"}
+  },
+  "title": {
+    "text": "EXPLORING C.o.L. INDEX vs LOCAL PURCHASING POWER of DIFFERENT COUNTRIES",
+    "anchor": null,
+    "fontSize": 18,
+    "offset": 20,
+    "color": "brown"
+  },
+  "width": 500,
+  "height": 500,
+  "mark": "point",
+  "encoding": {
+    "x": {
+      "field": "Cost_of_Living_Index",
+      "type": "quantitative",
+      "scale": {"zero": false},
+      "title": "COST OF LIVING INDEX",
+      "axis": {"titleFontSize": 12}
+    },
+    "y": {
+      "field": "Local_Purchasing_Power_Index",
+      "type": "quantitative",
+      "scale": {"zero": false},
+      "title": "LOCAL PURCHASING POWER",
+      "axis": {"titleFontSize": 12}
+    },
+
+"tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "City", "type": "nominal"},
+      {"field": "Cost_of_Living_Index", "type": "quantitative"},
+      {"field": "Local_Purchasing_Power_Index", "type": "quantitative"}
+
+
+    ],
+
+    "color": {
+      "field": "Country",
+      "type": "nominal",
+      "legend": {"columns": 4, "symbolLimit": 250}
+    },
+    "shape": {"field": "Country", "type": "nominal", "legend": {"columns": 4}}
+  },
+  "config": {}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      vegaEmbed("#vis", yourVlSpec);
+
+	</script>
+   </body>
+</html>

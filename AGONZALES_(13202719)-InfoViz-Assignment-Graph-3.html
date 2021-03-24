@@ -1,0 +1,141 @@
+<html>
+   <head>
+      <title> YOUR NAME - Assignment</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      <style>
+         body {
+         font-family: sans-serif;
+         }
+      </style>
+   </head>
+   <body>
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+               <td style="vertical-align: top;">Archie Gonzales</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+               <td style="vertical-align: top;">13202719</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+               <td style="vertical-align: top;"><p><a href="https://www.kaggle.com/andytran11996/cost-of-living" target="_blank" rel="noopener">Cost of Living Dataset (2018)</a>.</p>
+
+<p>The dataset was collected and developed by Numbeo a crowd-sourced global database of quality of life informations. This particular data is of the 2018 cost of living dataset which look at the Cost of Living Index, Rent Index, Groceries Index, Restaurant Price Index, and Local Purchasing Power Index of different countries which is further broken down to their respective cities. Other than the Indices, information on prices for daily/common commodities such as 1-bedroom apartment rent, 1-L milk, 1-kg of appples, etc. are also presented for each city and country. These indices are relative to New York City (NYC). Which means that for New York City, each index should be 100(%). If another city has, for example, rent index of 120, it means that on an average in that city rents are 20% more expensive than in New York City. If a city has rent index of 70, that means on average rent in that city is 30% less expensive than in New York City.</p>
+               </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+               <td style="vertical-align: top;"><p>My intial questions in deciding to do this graph are:</p>
+<p>Among countries with a Local Purchasing Power Index score of ≥ to 100, what is the average Rental Index among these countries?</p>
+<p>How similar are the Rental Index scores among cities of a country?</p></td>
+            </tr>
+         </tbody>
+      </table>
+      <hr />
+      <div id="vis"></div>
+      <hr />
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+               <td style="vertical-align: top;"><p>GRAPH-3: STRIP PLOT WITH CUSTOM TICK LABELS (MEAN)</p>
+
+<p>The strip plot shows Rent Index of Countries with an average Local Purchasing Power Index score that is equal or greater than 100. Each circle represent the cities' Rent Index with a red point to indicate the mean score. Additonal information such as 'City', 'Country', 'Rent Index' and 'Rent for 1-bedroom Apartment' can be seen when hovered over the point. The plots are also arranged from highest rent index score to lowest Rent Index score.</p></td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Insight:</strong></td>
+               <td style="vertical-align: top;"><p>While it is of no surprise that the Rent Index in Bermuda is the highest (since it is also one of the countries with a High Cost of Living Index as seen in the first bargraph), the wide gap from the mean of the next most expensive country (Singapore) is astounding. Reading about Bermuda, I learned that this island is 13 times smaller than Singapore, dependent on solely on tourism, reliant on imported consumer goods, and has high tax rates for everything (<a href="https://www.mylifeelsewhere.com/country-size-comparison/singapore/bermuda" target="_blank" rel="noopener">MyLifeElsewhere, 2020</a>; <a href="http://bermuda-online.org/costoflivingguide.htm" target="_blank" rel="noopener">Forbes, 2020</a>). USA, which has more point entries (cities) in the dataset, is noted to have more variations in the Rental Index scores (from 19.49 to 125.55). Ireland ranks as one of the more expensive countries to rent a 1-bedroom apartment. Rental cost among the four cities in the dataset is not disimmilar with with the rental reports published in the papers, with Limerick the cheapest and Dublin the most expensive among the five major cities (<a href="https://www.thejournal.ie/housing-crisis-ireland-rents-5260710-Nov2020/" target="_blank" rel="noopener">TheJournal, 2020</a>). It is obvious that countries with more major cities have wide variations or outliers. Germany, among the more developed economies, seems to have less significant variations in Rental Index or outliers, compared to say France and Canada.</p></td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+               <td style="vertical-align: top;"><p>A strip plot is a graphical data anlysis technique for summarizing a univariate data set. It is a better alternative to a histogram or a density plot. It is typically used for small data sets (histograms and density plots are typically preferred for larger data sets) (<a href="https://www.itl.nist.gov/div898/software/dataplot/refman1/auxillar/striplot.htm" target="_blank" rel="noopener">NIST, 2015</a>). A strip chart is handy when taking a look at a small set of one-dimensional data. It shows all the data, and since there are not too many points cluttering the plot, it is informative. It can also reveal gaps and outliers. The strip plot is most useful for showing subsets corresponding to a categorical variable (<a href="https://homepage.divms.uiowa.edu/~luke/classes/STAT4580-2020/stripplot.html" target="_blank" rel="noopener">University of Iowa, 2020</a>).</p>
+
+<p>For this design, I grouped cities (data points) by their countries. I only filtered countries with a Local Purchasing Power Index Score of equal or greater than 100. This means that these countries will either be at par or higher with the standard Purchasing Power Index score of NYC. I calculated the mean Rental Index and represented it with a red circle to be more visible againts single colour of the data points. I also arranged the countries in the strip from the highest Rental Index to the lowest Rental Index. Hovering over it will show the reader additional information such as city and the actual rental cost for a 1-bedroom apartment. Hovering over the red label, will show the 'encoding' which is the mean Rental Index and the Country.</p>
+
+<p>My realisation is that this strip plot would have best suited for entries with at least several data points. With the dataset I have, some countries only have one City as a data point. Sometimes, it is not so meaningful when compared to some of the other countries with several data points like USA, UK, or Canada, etc. Boxplots and histogram will also not be useful due to very few data points for most countries. However, this strip plot did allow me to look at variations, specially for countries with several data points and also allowed me to look at the average rental index and arranged them meaningfully. The visuals of course is a lot better than just mere histogram.</p></td>
+            </tr>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+               <td style="vertical-align: top;"><p>For this graph, I filtered countries whose mean LPPI is equal or greater than 100. By design, I decided to visualise the aggregate data on countries and not cities. However, I have to manipulate the dataset and convert all values within "Country" that are coded as abbreviated states (e.g., NY for New York or CA for California, etc.) to USA. This was manually done using Excel sorting/filtering methods. Also, I needed to change some of the Column Headers of the dataset to make them more meaningful and compatible for use within the Vega-Lite environment (i.e., "Apartment(1.bedroom).in.City.Centre" was changed to "Apartment_1-bedroom_in_City_Centre"). The new version of the dataset is saved and can be accessed via: <a href="https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv" target="_blank" rel="noopener">my new Cost of Living Dataset (2018) saved in GitHub</a>.</p></td>
+            </tr>
+         </tbody>
+      </table>
+
+
+      <script type="text/javascript">
+        var yourVlSpec =  {
+
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "ARCHIE GONZALES (13202719): InfoViz Assignment Graph-3b",
+  "background": "#F0FFF0",
+  "data": {
+    "url": "https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv",
+    "format": {"type": "csv"}
+  },
+  "title": {
+    "text": "RENT INDEX FOR HIGH PPI COUNTRIES",
+    "anchor": null,
+    "fontSize": 18,
+    "offset": 20,
+    "color": "brown"
+  },
+  "width": 650,
+  "height": 500,
+  "transform": [{"filter": "datum.Local_Purchasing_Power_Index >= 100"}],
+  "layer": [
+    {
+      "mark": "point",
+        
+      "encoding": {
+        "y": {
+          "field": "Country",
+          "type": "nominal",
+          "sort": {"op": "mean", "field": "Rent_Index", "order": "descending"}
+        },
+        "x": {
+          "field": "Rent_Index",
+          "type": "quantitative",
+          "scale": {"zero": false}
+        },
+        "tooltip": [{"field": "City", "type": "nominal"},
+        {"field": "Country", "type": "nominal"},
+        {"field": "Rent_Index", "type": "quantitative"},
+        {"field": "Apartment_1-bedroom_in_City_Centre", "type": "quantitative"}],
+        "color": {"value":"#008080"} 
+
+      }
+    },
+    {
+      "mark": {"type": "square", "tooltip": {"content": "encoding"}},
+      "encoding": {
+        "y": {
+          "field": "Country",
+          "type": "nominal",
+          "sort": {"op": "mean", "field": "Rent_Index", "order": "descending"},
+          "title": "COUNTRIES  WITH  LPPI ≥ 100",
+          "axis": {"titleFontSize": 13, "labelFontSize": 13}
+        },
+        "x": {
+          "field": "Rent_Index",
+          "type": "quantitative",
+          "aggregate": "mean",
+          "title": "RENT INDEX (AVERAGE IN RED)",
+          "axis": {"titleFontSize": 13}
+        },
+        "color": {"value": "red"}
+      }
+    }
+  ],
+  "config": {"tick": {"thickness": 1.5, "bandSize": 15}, "circle": {"size": 40}}
+}
+
+
+	vegaEmbed("#vis", yourVlSpec);
+      </script>
+   </body>
+</html>

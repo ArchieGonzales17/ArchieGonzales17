@@ -1,0 +1,146 @@
+<html>
+   <head>
+      <title> YOUR NAME - Assignment</title>
+<script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+      <style>
+         body {
+         font-family: sans-serif;
+         }
+      </style>
+   </head>
+   <body>
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+               <td style="vertical-align: top;">Archie Gonzales</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+               <td style="vertical-align: top;">13202719</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+               <td style="vertical-align: top;">
+
+<p><a href="https://www.kaggle.com/andytran11996/cost-of-living" target="_blank" rel="noopener">Cost of Living Dataset (2018)</a>.</p>
+
+
+<p>The dataset was collected and developed by Numbeo a crowd-sourced global database of quality of life informations. This particular data is of the 2018 cost of living dataset which look at the Cost of Living Index, Rent Index, Groceries Index, Restaurant Price Index, and Local Purchasing Power Index of different countries which is further broken down to their respective cities. Other than the Indices, information on prices for daily/common commodities such as 1-bedroom apartment rent, 1-L milk, 1-kg of appples, etc. are also presented for each city and country. These indices are relative to New York City (NYC). Which means that for New York City, each index should be 100(%). If another city has, for example, rent index of 120, it means that on an average in that city rents are 20% more expensive than in New York City. If a city has rent index of 70, that means on average rent in that city is 30% less expensive than in New York City.</p>
+
+               </td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+               <td style="vertical-align: top;">I initially wanted to explore the dataset. My initial questions were:
+What is the average Cost of Living Index for each country and how do they compare among countries?
+What is the average Local Purchasing Power Index for each country and how do they compare among countries?</td>
+            </tr>
+         </tbody>
+      </table>
+      <hr />
+      <div id="vis"; style="height:2600px;"></div>
+      <hr />
+      <table style="width: 850px;" cellspacing="5" cellpadding="5">
+         <tbody>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+               <td style="vertical-align: top;">
+<p>GRAPH-1: BAR CHART</p>
+<p>The two barcharts above reflect the mean (average) Cost of Living Index and Local Purchasing Power Index among the different countries. Both barcharts are arranged from the highest to the lowest Indices for each criteria. Two countries were highlighted in both barcharts (Ireland and Angola).</p>  
+		</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Insight:</strong></td>
+               <td style="vertical-align: top;">
+<p>I was initially surprised by what the chart produced. I see for example that Angola (capital: Luanda) appears to be the most expensive country (city) in the world (2018), however, their local purchasing power index is one of the lowest (9th lowest in the world). How could the people of Luanda meet their day-to-day needs? This prompted me to look it up; there must be a mistake in the data (or perhaps my vega-lite codes is not right). Surely, enough Luanda has consitently ranked in the most expensive cities in the world. The stats are also correct in relation to their LPPI. However, it should be noted that dataset like these (either Mercer or Numbeo), look at the average cost of living for expats and not necessarily of the average Angolan person. Apparently, they are not considered when the list are calculated (theoretically!) (see:<a href="https://www.weforum.org/agenda/2015/06/why-is-angolas-capital-the-most-expensive-city-in-the-world/" target="_blank" rel="noopener">article on why Luanda, Angola is the most expensive city</a>). That is interesting, as I did not realise datasets are based on expats and not on average people of the country. In Ireland, for exmaple, we could see that on average, we are less expensive than New Your City (by 20%) and our LPPI is approximately 20% more than people in NYC. I would imagine that in an ideal setting, countries with high cost of living would definitely be earning more and would have higher purchasing power index. However, it is not necessarily true. Saudi Arabia which has a LPPI 70% higher than NYC is also 50% less expensive than NYC. How reflectve is this on the overall quality of life of the people living in all these countries?</p>
+		</td>
+            </tr>
+            <tr>
+               <td style="vertical-align: top;"><strong>Design considerations</strong></td>
+               <td style="vertical-align: top;">
+<p>I decided to use bar charts to answer my exploratory questions. It is one of the best options to compare categorical data, in this case comparing countries based on quantitative data, i.e., the cost of living index and local purchasing power index. I arranged the data from the highest indeces scores to the lowest. I used grey colours for the bar to minimise distractions and noise, and highlighted the two countries which I wanted to focus on, using a strong 'maroon' colour for emphasis. I would have wanted to give different colours for each of these two countries (i.e., green for Ireland and red for Angola) but was unsuccesful in coding them properly using the 'Conditional' and 'Value' field ('Test' property) definitions (I continue to research and try to understand/experment on the Vega-Lite code properties). Visually, we can see and immediately make assumptions of significant information, i.e., which country is more expensive, which country may be earning more than other countries, etc.</p>
+
+<p>I have decided to compare by country and not by city as I only really wanted to see averages among the countries. For this, I have to calculate for the means for each indeces based on aggrgate city data fro each country. I plotted the data horizontally as it is a better way to represent data with long labels. I also used tooltip to visualise information on the mean score and country. However, it is noted that there are too many countries (122) in the dataset. While it is the simplest and the quickest way to compare the data, in relation to usability, it is not easy to scroll down further in the bottom; moreover, not all data are readily visible in a glance. I would have liked to create something like a chloropleth map (which I attempted but failed miserably!) to visualise this better. In due time, hopefully, as I am learning to navigate my way within Vega-Lite.</p>
+		</td>
+            </tr>
+            <tr>
+               <td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+               <td style="vertical-align: top;">
+<p>There was no filtering/transformation done within the Vega-Lite environment. By design, I decided to visualise the aggrgate data on countries and not cities. I also chose cost of living and LPP indeces for the quantitative data to be compared. However, I have to manipulate the dataset and convert all values within "Country" that are coded as abbreviated states (e.g., NY for New York or CA for California, etc.) to USA. This was manually done using Excel sorting/filtering methods. Also, I needed to change some the Column Headers of the dataset to make them more meaningful and compatible for use within the Vega-Lite environment (i.e., "Apartment(1.bedroom).in.City.Centre" was changed to "Apartment_1-bedroom_in_City_Centre"). The new version of the dataset is saved and can be accessed via: <a href="https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv" target="_blank" rel="noopener">my new Cost of Living Dataset (2018) saved in GitHub</a>.</p>
+		</td>
+            </tr>
+         </tbody>
+      </table>
+
+
+
+      <script type="text/javascript">
+        var yourVlSpec =  {
+
+
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "ARCHIE GONZALES (13202719): InfoViz Assignment Graph-1c",
+  "background": "#e4f8ece3",
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/ArchieGonzales17/ArchieGonzales17/main/cost-of-living-2016-ver2.csv",
+    "format": {"type": "csv"}
+  },
+ 
+"title": {
+    "text": "CoL and LPP Indeces by Country",
+    "anchor": "middle",
+    "fontSize": 20,
+    "offset": 20,
+    "color": "brown"
+  },
+
+  
+
+  "repeat": {"column": ["Cost_of_Living_Index", "Local_Purchasing_Power_Index"]},
+  "spec": {
+    "mark": {"type": "bar", "tooltip": true},
+    "encoding": {
+      "y": {
+        "field": "Country",
+        "type": "nominal",
+        "axis": {"title": null},
+        "sort": {
+          "op": "mean",
+          "field": {"repeat": "column"},
+          "order": "descending"
+        }
+      },
+      "x": {
+        "field": {"repeat": "column"},
+        "type": "quantitative",
+        "aggregate": "mean"
+      },
+      "color": {
+        "condition": {
+          "test": "datum.Country == 'Angola' || datum.Country == 'Ireland'",
+          "value": "#800000"
+        },
+
+
+        "value": "#bdbdbd"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+            vegaEmbed("#vis", yourVlSpec);
+	</script>
+   </body>
+</html>
